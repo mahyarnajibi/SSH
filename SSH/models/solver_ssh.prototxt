@@ -1,0 +1,19 @@
+# ***************************************************************** #
+# SSH: Single Stage Headless Face Detector
+# Solver Prototxt
+# ***************************************************************** #
+
+train_net: "SSH/models/train_ssh.prototxt"
+base_lr: 0.004
+lr_policy: "step"
+gamma: 0.1
+stepsize: 18000
+display: 20
+average_loss: 100
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 0
+snapshot_prefix: "SSH"
+iter_size: 2
+layer_wise_reduce: false
+    
