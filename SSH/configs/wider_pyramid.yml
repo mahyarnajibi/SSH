@@ -1,0 +1,9 @@
+EXP_DIR: ssh_pyramid
+TEST:
+  SCALES: !!python/tuple [500,800,1200,1600,]
+  PYRAMID_BASE_SIZE: !!python/tuple [800,1200]
+  MAX_SIZE: -1
+  NMS_THRESH: 0.3
+  N_DETS_PER_MODULE: 1000
+  ANCHOR_MIN_SIZE: 0
+

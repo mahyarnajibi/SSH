@@ -1,0 +1,10 @@
+EXP_DIR: ssh
+TRAIN:
+  SCALES: !!python/tuple [1200,]
+  MAX_SIZE: 1600
+  SNAPSHOT: 1000
+  HARD_POSITIVE_MINING: True
+TEST:
+  SCALES: !!python/tuple [1200,]
+  MAX_SIZE: 1600
+
