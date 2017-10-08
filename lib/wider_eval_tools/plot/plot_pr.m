@@ -1,4 +1,4 @@
-function plot_pr(propose,recall,lendge_name,seting_class,setting_name,dateset_class)
+function plot_pr(propose,recall,lendge_name,seting_class,setting_name,dateset_class,plot_out_path)
 model_num = size(propose,1);
 figure1 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1], 'rend','painters','pos',[1 1 800 400]);
 axes1 = axes('Parent',figure1,...
@@ -26,8 +26,11 @@ xlim([0,1]);
 ylim([0,1]);
 xlabel('Recall');
 ylabel('Precision');
-
-savename = sprintf('./plot/figure/%s/wider_pr_cruve_%s_%s.pdf',dateset_class,seting_class,setting_name);
+savedir = plot_out_path;
+if ~exist(savedir)
+    mkdir(savedir);
+end
+savename = fullfile(savedir,sprintf('wider_pr_curve_%s_%s.pdf',seting_class,setting_name));
 saveTightFigure(gcf,savename);
 clear gcf;
 hold off;

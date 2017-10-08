@@ -1,4 +1,4 @@
-function wider_plot(set_list,dir_ext,seting_class,dateset_class)
+function wider_plot(set_list,dir_ext,seting_class,dateset_class,plot_out_path)
 
 method_list = dir(dir_ext);
 model_num = size(method_list,1) - 2;
@@ -30,5 +30,5 @@ for i = 1:size(set_list,1)
     propose = propose(index);
     recall = recall(index);
     name_list = name_list(index);
-    plot_pr(propose, recall, name_list, seting_class, set_list{i},dateset_class);
+    plot_pr(propose, recall, name_list, seting_class, set_list{i},dateset_class,plot_out_path);
 end
