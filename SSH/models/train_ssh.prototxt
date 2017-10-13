@@ -848,34 +848,6 @@ layer {
   loss_weight: 1
   smooth_l1_loss_param { sigma: 3.0 }
 }
-#
-#layer {
-#  name: "m3@ssh_cls_prob"
-#  type: "Softmax"
-#  bottom: "m3@ssh_cls_score_reshape_output"
-#  top: "m3@ssh_cls_prob_output"
-#}
-#layer {
-#  name: 'm3@ssh_cls_prob_reshape'
-#  type: 'Reshape'
-#  bottom: 'm3@ssh_cls_prob_output'
-#  top: 'm3@ssh_cls_prob_reshape_output'
-#  reshape_param { shape { dim: 0 dim:4  dim: -1 dim: 0 } }
-#}
-#layer {
-#  name: 'm3@ssh_proposal'
-#  type: 'Python'
-#  bottom: 'm3@ssh_cls_prob_reshape_output'
-#  bottom: 'm3@ssh_bbox_pred_output'
-#  bottom: 'im_info'
-#  top: 'm3@ssh_boxes'
-#  top: 'm3@ssh_cls_score'
-#  python_param {
-#    module: 'SSH.layers.proposal_layer'
-#    layer: 'ProposalLayer'
-#    param_str: "{'feat_stride': 32,'scales': [16,32], 'ratios':[1,]}"
-#  }
-#}
 
 #========= M2@SSH OHEM ==========
 layer {
@@ -1221,33 +1193,6 @@ layer {
   smooth_l1_loss_param { sigma: 3.0 }
 }
 
-#layer {
-#  name: "m2@ssh_cls_prob"
-#  type: "Softmax"
-#  bottom: "m2@ssh_cls_score_reshape_output"
-#  top: "m2@ssh_cls_prob_output"
-#}
-#layer {
-#  name: 'm2@ssh_cls_prob_reshape'
-#  type: 'Reshape'
-#  bottom: 'm2@ssh_cls_prob_output'
-#  top: 'm2@ssh_cls_prob_reshape_output'
-#  reshape_param { shape { dim: 0 dim:4  dim: -1 dim: 0 } }
-#}
-#layer {
-#  name: 'm2@ssh_proposal'
-#  type: 'Python'
-#  bottom: 'm2@ssh_cls_prob_reshape_output'
-#  bottom: 'm2@ssh_bbox_pred_output'
-#  bottom: 'im_info'
-#  top: 'm2@ssh_boxes'
-#  top: 'm2@ssh_cls_score'
-#  python_param {
-#    module: 'SSH.layers.proposal_layer'
-#    layer: 'ProposalLayer'
-#    param_str: "{'feat_stride': 16,'scales': [4,8], 'ratios':[1,]}"
-#  }
-#}
 #========== M1@SSH OHEM =========
 
 layer {
@@ -1591,63 +1536,3 @@ layer {
   smooth_l1_loss_param { sigma: 3.0 }
 }
 
-#layer {
-#  name: "m1@ssh_cls_prob"
-#  type: "Softmax"
-#  bottom: "m1@ssh_cls_score_reshape_output"
-#  top: "m1@ssh_cls_prob_output"
-#}
-#layer {
-#  name: 'm1@ssh_cls_prob_reshape'
-#  type: 'Reshape'
-#  bottom: 'm1@ssh_cls_prob_output'
-#  top: 'm1@ssh_cls_prob_reshape_output'
-#  reshape_param { shape { dim: 0 dim:4  dim: -1 dim: 0 } }
-#}
-#layer {
-#  name: 'm1@ssh_proposal'
-#  type: 'Python'
-#  bottom: 'm1@ssh_cls_prob_reshape_output'
-#  bottom: 'm1@ssh_bbox_pred_output'
-#  bottom: 'im_info'
-#  top: 'm1@ssh_boxes'
-#  top: 'm1@ssh_cls_score'
-#  python_param {
-#    module: 'SSH.layers.proposal_layer'
-#    layer: 'ProposalLayer'
-#    param_str: "{'feat_stride': 8,'scales': [1,2], 'ratios':[1,]}"
-#  }
-#}
-#
-#
-## CONCAT ALL detections
-#layer{
-#  name: "ssh_cls_score"
-#  type: "Concat"
-#  bottom: "m1@ssh_cls_score"
-#  bottom: "m2@ssh_cls_score"
-#  bottom: "m3@ssh_cls_score"
-#  top: "ssh_cls_score"
-#  concat_param{
-#    axis: 0
-#  }
-#}
-#layer{
-#  name: "ssh_boxes"
-#  type: "Concat"
-#  bottom: "m1@ssh_boxes"
-#  bottom: "m2@ssh_boxes"
-#  bottom: "m3@ssh_boxes"
-#  top: "ssh_boxes"
-#  concat_param{
-#    axis: 0
-#  }
-#}
-#
-#
-#layer{
-#  name: "silence"
-#  type: "Silence"
-#  bottom: "ssh_cls_score"
-#  bottom: "ssh_boxes"
-#}
