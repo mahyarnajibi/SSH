@@ -2,9 +2,7 @@
 
 ## Introduction
 This repository includes the code for training and evaluating the SSH face detector introduced in our [**ICCV 2017 paper**](https://arxiv.org/abs/1708.03979).
-<div style='text-align:center;margin-top:0'>
-<img src="data/demo/ssh_examples.png" width=900 >
-</div>
+![alt text](data/demo/ssh_examples.png "SSH detection samples")
 
 
 
@@ -60,9 +58,10 @@ After downloading the SSH model, you can run the demo with the default configura
 python demo.py
 ```
 If everything goes well, you should be able to see the following detections:
-<div style='text-align:center;margin-top:0'>
+<p align="center">
 <img src="data/demo/demo_detections_SSH.png" width=400 >
-</div>
+</p>
+
 For a list of possible options run: ```python demo.py --help```
 
 <a name="training"></a>
