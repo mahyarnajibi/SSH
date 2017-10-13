@@ -2,9 +2,8 @@
 
 ## Introduction
 This repository includes the code for training and evaluating the SSH face detector introduced in our [**ICCV 2017 paper**](https://arxiv.org/abs/1708.03979).
+
 ![alt text](data/demo/ssh_examples.png "SSH detection samples")
-
-
 
 This code is adapted based on an intial fork from the py-faster-rcnn repository.
 
@@ -24,7 +23,8 @@ year={2017}
 3. [Training a model](#training)
 4. [Evaluting a trained model](#evaluating)
 
-### Installation<a name="install"> </a>
+<a name="install"> </a>
+### Installation
 1. Clone the repository:
 ```
 git clone --recursive https://github.com/mahyarnajibi/SSH.git
