@@ -88,8 +88,9 @@ def visusalize_detections(im, bboxes, plt_name='output', ext='.png', visualizati
                 plt.Rectangle((bbox[0], bbox[1]),
                               bbox[2] - bbox[0],
                               bbox[3] - bbox[1], fill=False,
-                              edgecolor='#17eb00', linewidth=3)
+                              edgecolor=(0, bbox[4], 0), linewidth=3)
             )
+	   
 
     plt.axis('off')
     plt.tight_layout()
