@@ -1,11 +1,10 @@
 # --------------------------------------------------------
 # SSH: Single Stage Headless Face Detector
 # Wider Dataset Loader
-# Written by Pouya Samangouei
+# Written by Pouya Samangouei and Mahyar Najibi
 # --------------------------------------------------------
 from __future__ import print_function
 import cPickle
-import csv
 import os
 import subprocess
 
@@ -18,53 +17,53 @@ from datasets.imdb import imdb
 
 class wider(imdb):
     def __init__(self, split, wider_path=None):
-        self._test_flag = False
+        self._test_flag = True if split == 'test' else False
         self._split = split
         imdb.__init__(self, 'wider_' + split)
         self._image_set = split
+
+
+        self._annotation_file_name = 'wider_face_test_filelist.txt' if self._test_flag else \
+            'wider_face_{}_bbx_gt.txt'.format(split)
+
         if wider_path is None:
             self._dataset_path = self._get_default_path()
         else:
             self._dataset_path = wider_path
         self._imgs_path = os.path.join(self._dataset_path, 'WIDER_{}'.format(split), 'images')
-        csv_path = os.path.join(self._dataset_path, 'WIDER_{}'.format(split), 'imglist.csv')
 
-        if not os.path.exists(csv_path) and split != 'test':
-            path = os.path.join(os.path.dirname(__file__),
-                                '..', 'wider_eval_tools')
-            cmd = 'cd {} && '.format(path)
-            cmd += 'matlab -nodisplay -nodesktop '
-            cmd += '-r "dbstop if error; '
-            cmd += 'wider_write_csv(\'{:s}\',\'{:s}\',\'{:s}\'); quit;"' \
-                .format(self._dataset_path, split,
-                        csv_path)
-            print('Running:\n{}'.format(cmd))
-            status = subprocess.call(cmd, shell=True)
-        elif split == 'test':
-            self._test_flag = True
+        # Read the annotations file
+        anno_path = os.path.join(self._dataset_path,'wider_face_split',self._annotation_file_name)
+        assert os.path.isfile(anno_path), 'Annotation file not found {}'.format(anno_path)
+        self._fp_bbox_map = {}
+        with open(anno_path, 'r') as file:
+            annos = file.readlines()
 
         self._fp_bbox_map = {}
-        with open(csv_path, 'r') as f:
-            reader = csv.reader(f)
-            if not self._test_flag:
-                for row in reader:
-                    if not row[0] in self._fp_bbox_map.keys():
-                        self._fp_bbox_map[row[0]] = []
-                    x1 = max(0, int(row[1]))
-                    y1 = max(0, int(row[2]))
-                    w = int(row[3])
-                    h = int(row[4])
-                    self._fp_bbox_map[row[0]].append([x1, y1,
-                                                      x1 + w,
-                                                      y1 + h])
-                self._image_paths = self._fp_bbox_map.keys()
-            else:
-                self._image_paths = []
-                for row in reader:
-                    self._image_paths.append(row[0])
+        count = 0
+        if not self._test_flag:
+            while count < len(annos):
+                name = str(annos[count]).rstrip()
+                self._fp_bbox_map[name] = []
+                count += 1
+                n_anno = int(annos[count])
+                for i in xrange(n_anno):
+                    count += 1
+                    bbox = annos[count].split(' ')[0:4]
+                    bbox = [int(round(float(x))) for x in bbox]
+                    x1 = max(0, bbox[0])
+                    y1 = max(0, bbox[1])
+                    self._fp_bbox_map[name].append([x1, y1, x1 + bbox[2], y1 + bbox[3]])
+                count += 1
+            self._image_paths = self._fp_bbox_map.keys()
+        else:
+            self._image_paths = []
+            for path in annos:
+                self._image_paths.append(str(path).rstrip())
 
         self._image_index = range(len(self._image_paths))
-        self._classes = ['_bg', 'face']
+        self._classes = ['bg', 'face']
+
 
     def _get_default_path(self):
         return os.path.join(cfg.DATA_DIR,'datasets', 'wider')
@@ -123,7 +122,6 @@ class wider(imdb):
                               'gt_classes': gt_classes,
                               'gt_overlaps': overlaps,
                               'flipped': False,
-                              'blurred': False,
                               'image_size': imsize,
                               'file_path': os.path.join(self._imgs_path, fp)})
 
