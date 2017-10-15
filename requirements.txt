@@ -7,3 +7,4 @@ pyyaml
 EasyDict
 protobuf
 argparse
+scikit-image
