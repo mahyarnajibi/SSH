@@ -9,12 +9,12 @@ from SSH.test import detect
 from argparse import ArgumentParser
 import os
 from utils.get_config import cfg_from_file, cfg, cfg_print
-
+import caffe
 
 def parser():
     parser = ArgumentParser('SSH Demo!')
     parser.add_argument('--im',dest='im_path',help='Path to the image',
-                        default='data/demo/test_im.jpg',type=str)
+                        default='data/demo/demo.jpg',type=str)
     parser.add_argument('--gpu',dest='gpu_id',help='The GPU ide to be used',
                         default=0,type=int)
     parser.add_argument('--proto',dest='prototxt',help='SSH caffe test prototxt',
@@ -40,9 +40,6 @@ if __name__ == "__main__":
 
     # Loading the network
     cfg.GPU_ID = args.gpu_id
-    # Mute and import caffe
-    os.environ['GLOG_minloglevel'] = '3'
-    import caffe
     caffe.set_mode_gpu()
     caffe.set_device(args.gpu_id)
     assert os.path.isfile(args.prototxt),'Please provide a valid path for the prototxt!'
