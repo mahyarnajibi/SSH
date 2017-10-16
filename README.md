@@ -3,9 +3,8 @@
 ## Introduction
 This repository includes the code for training and evaluating the SSH face detector introduced in our [**ICCV 2017 paper**](https://arxiv.org/abs/1708.03979).
 
-![alt text](data/demo/ssh_examples.png "SSH detection samples")
-
-This code is adapted based on an intial fork from the py-faster-rcnn repository.
+![alt text](data/demo/readme_examples/ssh_examples.png "SSH detection samples")
+The code is adapted based on an intial fork from the py-faster-rcnn repository.
 
 ### Citing
 If you find SSH useful in your research please consider citing:
@@ -30,19 +29,19 @@ year={2017}
 git clone --recursive https://github.com/mahyarnajibi/SSH.git
 ```
 
-2. Install [NCCL](https://github.com/NVIDIA/nccl) (used for multi-GPU training, if you are only interested in running the demo or evaluating the trained model, you can install Caffe in step 3 while commenting ```USE_NCCL :=1 ``` in ```Makefile.config.example```).
+2. Install [cuDNN](https://developer.nvidia.com/cudnn) and [NCCL](https://github.com/NVIDIA/nccl) (used for multi-GPU training).
 
-3. Caffe and PyCaffe: You need to compile the ```caffe-ssh``` repository which is a  Caffe fork compatible with SSH. Caffe should be built with *NCCL* and *python layer support* (set by default in ```Makefile.config.example```). You also need to ```make pycaffe```.
+3. Caffe and PyCaffe: You need to compile the ```caffe-ssh``` repository which is a  Caffe fork compatible with SSH. Caffe should be built with *cuDNN*, *NCCL*, and *python layer support* (set by default in ```Makefile.config.example```). You also need to ```make pycaffe```.
 
 4. Install python requirements:
 ```
 pip install -r requirements.txt
 ```
 
-5. Run ```setup.py``` in the ```lib``` directory:
+5. Make ```setup.py``` in the ```lib``` directory:
 ```
 cd lib
-python setup.py install
+make
 ```
 
 <a name="demo"></a>
@@ -57,9 +56,9 @@ After downloading the SSH model, you can run the demo with the default configura
 ```
 python demo.py
 ```
-If everything goes well, you should be able to see the following detections:
+If everything goes well, the following detections should be saved as ```data/demo/demo_detections_SSH.png```.
 <p align="center">
-<img src="data/demo/demo_detections_SSH.png" width=400 >
+<img src="data/demo/readme_examples/demo_detections_SSH.png" width=400 >
 </p>
 
 For a list of possible options run: ```python demo.py --help```
