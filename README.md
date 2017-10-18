@@ -18,7 +18,7 @@ year={2017}
 ```
 ### Contents
 1. [Installation](#install)
-2. [Ruuning the demo](#demo)
+2. [Running the demo](#demo)
 3. [Training a model](#training)
 4. [Evaluting a trained model](#evaluating)
 
