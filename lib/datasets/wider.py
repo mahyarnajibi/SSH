@@ -155,6 +155,7 @@ class wider(imdb):
                         det[4]))
         print('Done!')
 
+        
     def evaluate_detections(self, all_boxes, output_dir='./output/',method_name='SSH'):
         detections_txt_path = os.path.join(output_dir,'detections')
         self.write_detections(all_boxes,detections_txt_path)
