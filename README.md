@@ -91,7 +91,7 @@ For a list of all possible options run ```python main_train.py --help```.
 Please note that the default training parameters (*e.g.* number of iterations, stepsize, and learning rate) are set for training
 on 4 GPUs as described in the paper. 
 
-All *SSH* settings and configurations can be changed by passing an external configuration file to the module (```--cfg [path-to-config-file]```. See ```SSH/configs``` for example config files).
+All *SSH* default settings and configurations (saved in ```SSH/configs/default_config.yml```) can be overwritten by passing an external configuration file to the module (```--cfg [path-to-config-file]```. See ```SSH/configs``` for example config files).
 
 By default, the models are saved into the ```output/[EXP_DIR]/[db_name]/``` folder (```EXP_DIR``` is set to ```ssh``` by default and can be changed through the configuration files,
 and ```db_name``` would be ```wider_train``` in this case).
@@ -116,7 +116,7 @@ python main_test.py --model [path-to-the-trained-model]
 ```
 For a list of possible options run ```python main_test.py --help```. 
 
-All the *SSH* settings and configurations can be changed by passing an external configuration file to the module (```--cfg [path-to-config-file]```. See ```SSH/configs``` for example config files).
+All *SSH* default settings and configurations (saved in```SSH/configs/default_config.yml```) can be overwritten by passing an external configuration file to the module (```--cfg [path-to-config-file]```. See ```SSH/configs``` for example config files).
 
 The evaluation outputs are saved into ```output/[EXP_DIR]/[db_name]/[net_name]``` (```EXP_DIR``` is set to ```ssh``` by default and can be changed by passing a config file, ```net_name``` can be directly passed to the module and is set to ```SSH``` by default, and ```db_name```  would be ```wider_val``` in this case). This includes the detections saved as text files in a folder named ```detections```,detections saved as a ```pickle``` file, and the ```WIDER``` evaluation plots saved in a folder named ```wider_plots```. 
 
