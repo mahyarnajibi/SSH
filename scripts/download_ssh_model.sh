@@ -3,7 +3,7 @@
 # Download script
 #-----------------------------------------
 #!/bin/bash
-url="www.umiacs.umd.edu/~najibi/download.php"
+url="legacydirs.umiacs.umd.edu/~najibi/download.php"
 method_name="ssh"
 file_name="SSH_models.tar.gz"
 cur_dir=${PWD##*/}
