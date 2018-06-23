@@ -58,7 +58,7 @@ python demo.py
 ```
 If everything goes well, the following detections should be saved as ```data/demo/demo_detections_SSH.png```.
 <p align="center">
-<img src="http://legacydirs.umiacs.umd.edu/~najibi/github_readme_file/demo_detections_SSH.png" width=400 >
+<img src="http://legacydirs.umiacs.umd.edu/~najibi/github_readme_files/demo_detections_SSH.png" width=400 >
 </p>
 
 For a list of possible options run: ```python demo.py --help```
