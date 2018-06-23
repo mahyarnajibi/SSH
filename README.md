@@ -3,7 +3,7 @@
 ## Introduction
 This repository includes the code for training and evaluating the *SSH* face detector introduced in our [**ICCV 2017 paper**](https://arxiv.org/abs/1708.03979).
 
-![alt text](data/demo/readme_examples/ssh_examples.png "SSH detection samples")
+![alt text](http://legacydirs.umiacs.umd.edu/~najibi/github_readme_files/ssh_detections.jpg "SSH detection samples")
 The code is adapted based on an intial fork from the py-faster-rcnn repository.
 
 ### Citing
@@ -58,7 +58,7 @@ python demo.py
 ```
 If everything goes well, the following detections should be saved as ```data/demo/demo_detections_SSH.png```.
 <p align="center">
-<img src="data/demo/readme_examples/demo_detections_SSH.png" width=400 >
+<img src="http://legacydirs.umiacs.umd.edu/~najibi/github_readme_file/demo_detections_SSH.png" width=400 >
 </p>
 
 For a list of possible options run: ```python demo.py --help```
